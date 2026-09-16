@@ -1,0 +1,49 @@
+{
+  "_comment": "chartevents/inputevents/outputevents store a numeric itemid, not a named column — 'heart rate' only exists as itemid 220045 inside chartevents rows, and d_items often has several similarly-named itemids (e.g. the actual Heart Rate reading vs. its high/low alarm thresholds, which are separate rows and NOT the measurement). This file pins the verified-correct itemid(s) for each clinically relevant concept so the agent doesn't have to guess or accidentally pick an alarm/score/text itemid at query time. Same purpose as clinical_terms.json but for icu/ event tables instead of ICD codes. Row counts below are against the current 1500-patient cohort (2026-09) — re-verify if the cohort changes materially.",
+
+  "heart_rate": {"table": "chartevents", "itemid": 220045, "unit": "bpm"},
+
+  "blood_pressure_systolic_noninvasive": {"table": "chartevents", "itemid": 220179, "unit": "mmHg"},
+  "blood_pressure_diastolic_noninvasive": {"table": "chartevents", "itemid": 220180, "unit": "mmHg"},
+  "blood_pressure_mean_noninvasive": {"table": "chartevents", "itemid": 220181, "unit": "mmHg"},
+  "blood_pressure_systolic_arterial": {"table": "chartevents", "itemid": 220050, "unit": "mmHg",
+    "_note": "invasive arterial line reading, more accurate but only present when a line is placed"},
+  "blood_pressure_diastolic_arterial": {"table": "chartevents", "itemid": 220051, "unit": "mmHg"},
+  "blood_pressure_mean_arterial": {"table": "chartevents", "itemid": 220052, "unit": "mmHg",
+    "_note": "MAP — used directly in SOFA cardiovascular scoring"},
+
+  "respiratory_rate": {"table": "chartevents", "itemid": 220210, "unit": "insp/min",
+    "_note": "excludes itemids 224688/224689/224690 (Set/spontaneous/Total — ventilator-specific variants)"},
+
+  "temperature_celsius": {"table": "chartevents", "itemid": 223762, "unit": "°C"},
+  "temperature_fahrenheit": {"table": "chartevents", "itemid": 223761, "unit": "°F",
+    "_note": "some rows are charted in F and some in C — check both unless you convert"},
+
+  "spo2": {"table": "chartevents", "itemid": 220277, "unit": "%",
+    "_note": "pulse oximetry; excludes 223769/223770 which are alarm limits, not readings"},
+  "arterial_o2_saturation": {"table": "chartevents", "itemid": 220227, "unit": "%",
+    "_note": "from ABG — more accurate than SpO2 but charted far less frequently"},
+
+  "gcs_eye_opening": {"table": "chartevents", "itemid": 220739, "unit": "score 1-4",
+    "_note": "d_items marks this param_type='Text' but valuenum is populated with the numeric score — verified"},
+  "gcs_verbal_response": {"table": "chartevents", "itemid": 223900, "unit": "score 1-5"},
+  "gcs_motor_response": {"table": "chartevents", "itemid": 223901, "unit": "score 1-6",
+    "_note": "total GCS = eye + verbal + motor, max 15"},
+
+  "admission_weight_kg": {"table": "chartevents", "itemid": 226512, "unit": "kg"},
+  "daily_weight_kg": {"table": "chartevents", "itemid": 224639, "unit": "kg"},
+
+  "norepinephrine": {"table": "inputevents", "itemid": 221906, "unit": "mg",
+    "_note": "first-line sepsis vasopressor"},
+  "epinephrine": {"table": "inputevents", "itemid": 221289, "unit": "mg",
+    "_note": "excludes itemid 229617 ('Epinephrine.') — near-duplicate label, verify before using"},
+  "vasopressin": {"table": "inputevents", "itemid": 222315, "unit": "units"},
+  "phenylephrine": {"table": "inputevents", "itemid": 221749, "unit": "mg",
+    "_note": "excludes concentration-variant itemids 229630/229631/229632 and the intubation-specific 229789"},
+  "dopamine": {"table": "inputevents", "itemid": 221662, "unit": "mg"},
+  "normal_saline": {"table": "inputevents", "itemid": 225158, "unit": "mL",
+    "_note": "0.9% NaCl — main crystalloid for sepsis fluid resuscitation"},
+
+  "urine_output": {"table": "outputevents", "itemid": 226559, "unit": "mL",
+    "_note": "Foley catheter output — the primary urine output measurement; used in SOFA renal scoring and AKI monitoring"}
+}

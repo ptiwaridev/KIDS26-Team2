@@ -1,0 +1,14 @@
+# Fallback for teammates not using the VS Code devcontainer.
+# Uses the same Dockerfile as the devcontainer and Container Apps deploy.
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    volumes:
+      - .:/workspace
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0

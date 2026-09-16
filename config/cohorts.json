@@ -1,0 +1,12 @@
+{
+  "_comment": "The 2-3 cohorts the subset is built around. Each key must match an entry in clinical_terms.json — ingestion scripts union the icd prefixes of the listed terms to decide which admissions/patients make the cut.",
+
+  "sepsis": {
+    "terms": ["sepsis", "septic shock"],
+    "max_patients": 1000
+  },
+  "heart_failure": {
+    "terms": ["heart failure"],
+    "max_patients": 1000
+  }
+}

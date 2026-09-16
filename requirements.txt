@@ -1,0 +1,42 @@
+# Pinned for reproducibility across the team's dev environments.
+# Bump deliberately, not incidentally, during the hackathon.
+#
+# Adding a new dependency? This file is what the shared Docker image is built
+# from (see Dockerfile) — installing something locally with pip and not
+# updating this file means it silently doesn't exist for anyone else.
+#   1. Add it here with an exact pinned version (== not >=).
+#   2. `make docker-build` and confirm it still works.
+#   3. Commit and push requirements.txt immediately, so the next person's
+#      `docker compose up` / devcontainer rebuild picks it up automatically.
+
+streamlit==1.38.0
+pandas==2.2.2
+numpy==1.26.4
+python-dotenv==1.0.1
+
+# Structured data: Azure SQL
+pyodbc==5.1.0
+sqlalchemy==2.0.32
+
+# RAG: Azure AI Search
+azure-search-documents==11.5.1
+azure-identity==1.17.1
+
+# Embeddings + generation via Azure AI Foundry
+azure-ai-inference==1.0.0b4
+openai==1.44.1
+# openai==1.44.1 still passes a 'proxies' kwarg httpx dropped in 0.28 — pin
+# explicitly rather than letting pip resolve an incompatible httpx.
+httpx==0.27.2
+
+# Orchestration (lightweight; swap for hand-rolled routing if unneeded)
+langchain==0.2.16
+langchain-community==0.2.16
+
+# Ingestion / synthetic data
+faker==28.4.1
+tqdm==4.66.5
+s3fs==2024.6.1  # only needed by credentialed members pulling from s3:// sources
+
+# Testing
+pytest==8.3.2

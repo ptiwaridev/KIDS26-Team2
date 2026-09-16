@@ -1,0 +1,32 @@
+{
+  "_comment": "Simple term -> ICD-code-prefix lookup. Used two ways: (1) the Text-to-SQL agent prompt resolves a clinical term the user typed (e.g. 'sepsis') to icd_code prefixes for a WHERE ... LIKE clause; (2) scripts/ingest_structured.py uses the same prefixes to select which admissions belong to a cohort when carving the subset. Deliberately a flat dict, not a vector index — vocabulary here is small and known in advance.",
+
+  "sepsis": {
+    "icd10_prefixes": ["A40", "A41", "R6520", "R6521"],
+    "icd9_prefixes": ["038", "9959"]
+  },
+  "septic shock": {
+    "icd10_prefixes": ["A41", "R6521"],
+    "icd9_prefixes": ["78552"]
+  },
+  "heart failure": {
+    "icd10_prefixes": ["I50"],
+    "icd9_prefixes": ["428"]
+  },
+  "chf": {
+    "icd10_prefixes": ["I50"],
+    "icd9_prefixes": ["428"]
+  },
+  "congestive heart failure": {
+    "icd10_prefixes": ["I50"],
+    "icd9_prefixes": ["428"]
+  },
+  "acute kidney injury": {
+    "icd10_prefixes": ["N17"],
+    "icd9_prefixes": ["5849"]
+  },
+  "chronic kidney disease": {
+    "icd10_prefixes": ["N18"],
+    "icd9_prefixes": ["585"]
+  }
+}
