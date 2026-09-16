@@ -13,7 +13,7 @@
 | --- | --- | --- | --- |
 | [Sri Sivani Charan Yalamanchi] | [Team Lead] | [Responsibility] | [Support] |
 | [Sukesh Sangam] | [Team Member] | [Responsibility] | [Support] |
-| [Ibriham Bello] | [Team Member] | [Responsibility] | [Support] |
+| [Ibrahim Bello] | [Team Member] | [Responsibility] | [Support] |
 | [Parth Tiwari] | [Team Member] | [Responsible for the UI and Presentation] | [Support] |
 | [Angelo Busa] | [Team Member] | [Responsibility] | [Support] |
 | [Elisabeth Chen] | [Team Member] | [Responsible for Evaluating Chatbot Responses and providing technical support] | [Support] |
