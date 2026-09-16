@@ -40,3 +40,6 @@ s3fs==2024.6.1  # only needed by credentialed members pulling from s3:// sources
 
 # Testing
 pytest==8.3.2
+
+npm install
+npm run dev
