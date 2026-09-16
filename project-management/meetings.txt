@@ -1,1 +1,33 @@
-Meeting Notes: [INSERT LINK]
+SEP 16TH 2026
+
+Meeting Notes: 
+Hackathon team set up shared Azure SQL access to the MIMIC dataset, aligned on a clinical AI chat assistant architecture (SQL RAG + Azure AI Search for notes, React UI), and discussed job/career context.
+
+Database Access Setup
+MIMIC tables hosted on Sri's Azure SQL; shared connection string in Teams
+Opened SQL Server firewall (0.0.0.0–255.255.255.255) and created shared service-account login
+Radiology tables loaded as stretch scope if time permits
+
+Architecture & Stack
+Notes/text data indexed in Azure AI Search; structured tables queried via SQL agent
+Plan to also load notes into SQL for evaluation
+Use Python create_sql_agent prebuilt; skip LangChain as unnecessary complexity for scope
+Project named 'Clinical AI Chat Assistant'; React frontend, chat returns text + table
+
+Career / Context Chat
+Sri shared layoff/CAP move context; Sri exploring ML/AI shift to stable role
+Sukkesh is a Northeastern-grad Master's student (2028), classes now, lab practicum next year
+
+Next Steps
+(Sri) Add Python/Docker container for the agent into a separate folder in the repo
+(Sri) Also load clinical notes into SQL database for evaluation
+(Sukkesh) Build the frontend UI in React and wire it to the model output
+(Sukkesh) Read through shared GitHub links and RAG references
+(Sri) Put Azure server credentials in .gitignore so the env file isn't pushed
+(Sri) Confirm React vs HTML/CSS frontend choice with Sri when he returns
+
+Decisions Made
+Skip LangChain; use pure Python with create_sql_agent for the orchestration layer
+Use one shared service-account SQL login rather than per-user Azure AD auth
+Project name: Clinical AI Chat Assistant
+Chat responses return text plus tables; no visualizations/graphs for now
